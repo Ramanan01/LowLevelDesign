@@ -1,6 +1,6 @@
-package src.designpatterns.behavioral.strategy.observer.impl;
+package src.designpatterns.behavioral.observer.impl;
 
-import src.designpatterns.behavioral.strategy.observer.StockObserver;
+import src.designpatterns.behavioral.observer.StockObserver;
 
 public class WebDashboard implements StockObserver {
     @Override

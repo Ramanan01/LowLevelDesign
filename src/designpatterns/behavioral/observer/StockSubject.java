@@ -1,4 +1,4 @@
-package src.designpatterns.behavioral.strategy.observer;
+package src.designpatterns.behavioral.observer;
 
 public interface StockSubject {
     void addObserver(StockObserver stockObserver);

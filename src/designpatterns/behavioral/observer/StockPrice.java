@@ -1,8 +1,8 @@
-package src.designpatterns.behavioral.strategy.observer;
+package src.designpatterns.behavioral.observer;
 
-import src.designpatterns.behavioral.strategy.observer.impl.AlertSystem;
-import src.designpatterns.behavioral.strategy.observer.impl.MobileApplication;
-import src.designpatterns.behavioral.strategy.observer.impl.WebDashboard;
+import src.designpatterns.behavioral.observer.impl.AlertSystem;
+import src.designpatterns.behavioral.observer.impl.MobileApplication;
+import src.designpatterns.behavioral.observer.impl.WebDashboard;
 
 public class StockPrice {
     public static void main(String[] args) {

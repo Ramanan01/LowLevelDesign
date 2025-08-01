@@ -1,4 +1,4 @@
-package src.designpatterns.behavioral.strategy.observer;
+package src.designpatterns.behavioral.observer;
 
 import java.util.HashSet;
 import java.util.Set;
