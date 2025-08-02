@@ -11,7 +11,7 @@ public class SupportTicketSystem {
         SupportHandler supervisor = new SupervisorSupport();
         SupportHandler manager = new ManagerSupport();
 
-        // Setup Chain: Frontline → Supervisor → Manager
+        // Setup Chain: FrontLine → Supervisor → Manager
         frontline.setNextHandler(supervisor);
         supervisor.setNextHandler(manager);
 
