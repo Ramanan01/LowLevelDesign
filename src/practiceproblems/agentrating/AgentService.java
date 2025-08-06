@@ -1,9 +1,7 @@
 package src.practiceproblems.agentrating;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.YearMonth;
+import java.util.*;
 
 public class AgentService {
     Map<Integer, Agent> agentMap;
@@ -25,13 +23,13 @@ public class AgentService {
         }
     }
 
-    public void addRating(int id, double rating){
+    public void addRating(int id, double rating, int year, int month){
         if(agentMap.get(id) == null){
             throw new AgentNotFoundException("Agent not found for id " + id);
         }
 
         try{
-            agentMap.get(id).addRating(rating);
+            agentMap.get(id).addRating(rating, YearMonth.of(year, month));
         }
         catch(IllegalArgumentException e){
             System.err.println("Invalid rating value");
@@ -41,6 +39,18 @@ public class AgentService {
     public List<Agent> getAgentsByAverageRating(){
         List<Agent> agentList = new ArrayList<>(agentMap.values());
         agentList.sort((a, b) -> Double.compare(b.getAverageRating(), a.getAverageRating()));
+        return agentList;
+    }
+
+    public List<Agent> getAgentsByAverageMonthlyRating(int year, int month){
+        List<Agent> agentList = new ArrayList<>(agentMap.values());
+        agentList.sort((a, b) -> Double.compare(b.getAverageRatingsByMonth(YearMonth.of(year, month)), a.getAverageRatingsByMonth(YearMonth.of(year, month))));
+        return agentList;
+    }
+
+    public List<Agent> getAgentsByCustomComparison(){
+        List<Agent> agentList = new ArrayList<>(agentMap.values());
+        agentList.sort(Comparator.comparingDouble(Agent::getAverageRating).reversed().thenComparing(Agent::getRatingCount).thenComparing(Agent::getId));
         return agentList;
     }
 }
