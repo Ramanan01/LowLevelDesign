@@ -6,7 +6,7 @@ import java.util.*;
 public class AgentService {
     Map<Integer, Agent> agentMap;
 
-    AgentService(){
+    public AgentService(){
         agentMap = new HashMap<>();
     }
 
@@ -52,5 +52,13 @@ public class AgentService {
         List<Agent> agentList = new ArrayList<>(agentMap.values());
         agentList.sort(Comparator.comparingDouble(Agent::getAverageRating).reversed().thenComparing(Agent::getRatingCount).thenComparing(Agent::getId));
         return agentList;
+    }
+
+    public Agent getAgentById(int id) {
+        Agent agent = agentMap.get(id);
+        if(agent == null){
+            throw new AgentNotFoundException("Agent now found in map");
+        }
+        return agent;
     }
 }

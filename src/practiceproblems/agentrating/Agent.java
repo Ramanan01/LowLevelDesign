@@ -1,10 +1,7 @@
 package src.practiceproblems.agentrating;
 
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Agent {
     private int id;
@@ -13,7 +10,7 @@ public class Agent {
     private Double totalRatingSum;
     private int totalRatingCount;
 
-    Agent(int id, String name){
+    public Agent(int id, String name){
         if(name == null || name.isEmpty()){
             throw new IllegalArgumentException("Name is invalid for new agent");
         }
@@ -71,5 +68,20 @@ public class Agent {
         int count = monthlyRatings.getOrDefault(month, new ArrayList<>()).size();
         return String.format("Agent{id=%d, name='%s', avgRating=%.2f, ratings=%d}",
                 id, name, avg, count);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if (!(o instanceof Agent)) return false;
+        Agent agent = (Agent) o;
+        return id == agent.id && Objects.equals(name, agent.name);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, name);
     }
 }
