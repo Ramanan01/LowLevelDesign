@@ -2,6 +2,14 @@ package src.datastructures;
 
 import java.util.*;
 
+class DummyObject{
+    public int a, b;
+    DummyObject(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+}
+
 public class Main {
     // This is a sample test code to try out operations in data structures for java compared to STL data structures in C++
 
@@ -75,7 +83,7 @@ public class Main {
             System.out.println(entry.getKey() + "->" + entry.getValue());
         }
 
-        //This is for queue in C++. Queue is an interface. We can use multiple interfaces
+        //This is for queue in C++. Queue is an interface. We can use multiple implementations
         Queue<Integer> q = new LinkedList<>();
         q.add(2);
         q.add(5);
@@ -133,6 +141,76 @@ public class Main {
         q2.poll();
         System.out.println(q1.peek());
         System.out.println(q2.peek());
+
+        //Sorting
+
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 19, 20, 34, 12, 10));
+        Collections.sort(list);
+        System.out.println("Printing List");
+        for(Integer a: list){
+            System.out.println(a);
+        }
+
+        list = new ArrayList<>(Arrays.asList(1, 19, 20, 34, 12, 10));
+        list.sort(null);
+        System.out.println("Printing List");
+        for(Integer a: list) {
+            System.out.println(a);
+        }
+
+        list = new ArrayList<>(Arrays.asList(1, 19, 20, 34, 12, 10));
+        list.sort(Collections.reverseOrder());
+        System.out.println("Printing List");
+        for(Integer a: list){
+            System.out.println(a);
+        }
+
+        ArrayList<DummyObject> dummyObjects = new ArrayList<>(Arrays.asList(
+           new DummyObject(1, 5),
+           new DummyObject(8, 2),
+           new DummyObject(15, 1)
+        ));
+
+        dummyObjects.sort((d1, d2) -> {
+            if(d1.a > d2.a){
+                return -1;
+            }
+            else if(d2.a > d1.a){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        });
+        System.out.println("Printing List");
+        for(DummyObject d: dummyObjects){
+            System.out.println(d.a + " " + d.b);
+        }
+
+
+        dummyObjects = new ArrayList<>(Arrays.asList(
+                new DummyObject(1, 5),
+                new DummyObject(8, 2),
+                new DummyObject(15, 25)
+        ));
+
+        dummyObjects.sort((d1, d2) -> {
+            if(d1.b > d2.b){
+                return -1;
+            }
+            else if(d2.b > d1.b){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        });
+        System.out.println("Printing List");
+        for(DummyObject d: dummyObjects){
+            System.out.println(d.a + " " + d.b);
+        }
+
+
 
     }
 }
