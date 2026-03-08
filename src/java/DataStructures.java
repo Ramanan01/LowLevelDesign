@@ -1,4 +1,4 @@
-package src.datastructures;
+package src.java;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ class DummyObject{
     }
 }
 
-public class Main {
+public class DataStructures{
     // This is a sample test code to try out operations in data structures for java compared to STL data structures in C++
 
     public static void main(String[] args){
