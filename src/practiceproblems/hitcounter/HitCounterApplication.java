@@ -203,7 +203,5 @@ public class HitCounterApplication {
         } finally {
             scanner.close(); // Important to close resources
         }
-
-
     }
 }
