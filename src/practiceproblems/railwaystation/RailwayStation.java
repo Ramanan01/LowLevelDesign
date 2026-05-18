@@ -67,14 +67,13 @@ class Train {
 
 class Platform {
     private static final Object lock = new Object();
-    private static AtomicInteger platformCount = new AtomicInteger(0);
+    private static final AtomicInteger platformCount = new AtomicInteger(0);
     int platformNo;
     private final TreeSet<Train> trains;
 
     public Platform() {
-        synchronized (lock) {
-            this.platformNo = platformCount.incrementAndGet();
-        }
+
+        this.platformNo = platformCount.incrementAndGet();
 
         trains = new TreeSet<>(Comparator.comparing((Train t) -> t.getInterval().getStartTime()).thenComparing(Train::getId));
     }
@@ -131,7 +130,7 @@ public class RailwayStation {
     }
 
     public int scheduleTrain(String trainName, LocalDateTime start, LocalDateTime end) {
-        rwLock.readLock().lock();
+        rwLock.writeLock().lock();
         try {
             TimeInterval interval = new TimeInterval(start, end);
             Train newTrain = new Train(trainName, interval);
@@ -139,7 +138,7 @@ public class RailwayStation {
             return scheduleTrain(newTrain);
         }
         finally {
-            rwLock.readLock().unlock();
+            rwLock.writeLock().unlock();
         }
     }
 
@@ -153,6 +152,13 @@ public class RailwayStation {
     }
 
     public int getPlatformCount() {
-        return platforms.size();
+        rwLock.readLock().lock();
+
+        try{
+            return platforms.size();
+        }
+        finally{
+            rwLock.readLock().unlock();
+        }
     }
 }
