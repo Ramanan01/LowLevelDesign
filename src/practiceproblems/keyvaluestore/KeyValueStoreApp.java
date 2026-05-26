@@ -113,7 +113,7 @@ class KeyValueStore<K, V> {
         keys.set(i, keys.get(last));
         indexMap.put(keys.get(i), i);
 
-        keys.remove(keys.size()-1);
+        keys.removeLast();
         indexMap.remove(key);
         keyMap.remove(key);
     }
